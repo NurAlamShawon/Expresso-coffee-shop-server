@@ -34,13 +34,13 @@ async function run() {
     const usercollection = database.collection("coffees");
     // get data
 
-    app.get("/coffees", async (req, res) => {
+    app.get('/coffees', async (req, res) => {
       const cursor = usercollection.find();
       const result = await cursor.toArray();
       res.send(result);
     });
 
-    app.get("/coffees/:id", async (req, res) => {
+    app.get('/coffees/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await usercollection.findOne(query);
@@ -100,21 +100,21 @@ async function run() {
     insertDefaultData().catch(console.error);
 
     // post data
-    app.post("/coffees", async (req, res) => {
+    app.post('/coffees', async (req, res) => {
       console.log("data posted", req.body);
       const newuser = req.body;
       const result = await usercollection.insertOne(newuser);
       res.send(result);
     });
 
-    app.delete("/coffees/:id", async (req, res) => {
+    app.delete('/coffees/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await usercollection.deleteOne(query);
       res.send(result);
     });
 
-    app.put("/coffees/:id", async (req, res) => {
+    app.put('/coffees/:id', async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
       const coffee = req.body;
@@ -141,20 +141,20 @@ async function run() {
     const database_user = client.db("userdb");
     const usercollection1 = database_user.collection("users");
 
-    app.get("/users", async (req, res) => {
+    app.get('/users', async (req, res) => {
       const cursor = usercollection1.find();
       const result = await cursor.toArray();
       res.send(result);
     });
 
-    app.get("/users/:id", async (req, res) => {
+    app.get('/users/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await usercollection1.findOne(query);
       res.send(result);
     });
 
-    app.post("/users", async (req, res) => {
+    app.post('/users', async (req, res) => {
       console.log("data posted", req.body);
       const newuser = req.body;
 
@@ -175,14 +175,14 @@ async function run() {
       res.status(201).send(result);
     });
 
-    app.delete("/users/:id", async (req, res) => {
+    app.delete('/users/:id', async (req, res) => {
       const id = req.params.id;
       const query = { _id: new ObjectId(id) };
       const result = await usercollection1.deleteOne(query);
       res.send(result);
     });
 
-    app.put("/users/:id", async (req, res) => {
+    app.put('/users/:id', async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
       const user = req.body;
@@ -210,7 +210,7 @@ run().catch(console.dir);
 
 // pass- VkVrFgAZxtEsA5I9  simpleDbUser
 
-app.get("/", (req, res) => {
+app.get('/', (req, res) => {
   res.send("user server is running100");
 });
 
